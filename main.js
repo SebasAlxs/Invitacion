@@ -193,4 +193,24 @@ if (musicToggle && bgMusic) {
       musicToggle.classList.add('paused');
     }
   });
+
+  // Pausar música cuando la pestaña se oculta o se cambia de app
+  let wasPlayingBeforeHide = false;
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      // Si la música está sonando, pausarla
+      if (!bgMusic.paused) {
+        wasPlayingBeforeHide = true;
+        bgMusic.pause();
+        musicToggle.classList.add('paused'); // Actualizar botón
+      }
+    } else {
+      // Si volvimos a la pestaña y la música estaba sonando, reanudarla
+      if (wasPlayingBeforeHide) {
+        bgMusic.play().catch(e => console.log('Audio resume blocked', e));
+        musicToggle.classList.remove('paused');
+        wasPlayingBeforeHide = false;
+      }
+    }
+  });
 }
