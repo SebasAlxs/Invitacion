@@ -196,21 +196,31 @@ if (musicToggle && bgMusic) {
 
   // Pausar música cuando la pestaña se oculta o se cambia de app
   let wasPlayingBeforeHide = false;
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      // Si la música está sonando, pausarla
+  
+  const handleVisibilityChange = () => {
+    if (document.hidden || document.visibilityState === 'hidden') {
       if (!bgMusic.paused) {
         wasPlayingBeforeHide = true;
         bgMusic.pause();
-        musicToggle.classList.add('paused'); // Actualizar botón
+        musicToggle.classList.add('paused'); 
       }
     } else {
-      // Si volvimos a la pestaña y la música estaba sonando, reanudarla
       if (wasPlayingBeforeHide) {
         bgMusic.play().catch(e => console.log('Audio resume blocked', e));
         musicToggle.classList.remove('paused');
         wasPlayingBeforeHide = false;
       }
     }
-  });
+  };
+
+  const handlePageHide = () => {
+    if (!bgMusic.paused) {
+      bgMusic.pause();
+      musicToggle.classList.add('paused');
+    }
+  };
+
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  window.addEventListener('pagehide', handlePageHide); // Especialmente para iOS Safari
+  window.addEventListener('blur', handlePageHide); // Fallback para WebView (Instagram, etc)
 }
