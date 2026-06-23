@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Mis 15 Años · Belén · v3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Great+Vibes&family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- Animated sky-blue background with bokeh + sparkles on canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- CSS sparkle particles -->
+<div class="sparkle-layer" id="sparkle-layer"></div>
+
+<div class="page">
+
+  <!-- ── HERO ── -->
+  <section class="hero reveal">
+
+    <!-- Ornamental corner filigree (top-left, top-right) -->
+    <svg class="corner-svg corner-tl" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M5 5 Q5 55 5 105" stroke="rgba(201,148,10,.4)" stroke-width="1"/>
+      <path d="M5 5 Q55 5 105 5" stroke="rgba(201,148,10,.4)" stroke-width="1"/>
+      <path d="M5 5 Q30 30 55 5" stroke="rgba(201,148,10,.55)" stroke-width="1" fill="none"/>
+      <path d="M5 5 Q5 30 5 55" stroke="rgba(201,148,10,.4)" stroke-width="1" fill="none"/>
+      <!-- Scroll flourish -->
+      <path d="M8 8 C18 8 22 18 14 22 C8 25 8 18 14 16" stroke="rgba(201,148,10,.65)" stroke-width=".9" fill="none"/>
+      <path d="M8 8 C8 18 18 22 22 14 C25 8 18 8 16 14" stroke="rgba(201,148,10,.65)" stroke-width=".9" fill="none"/>
+      <!-- Dots -->
+      <circle cx="5"  cy="5"  r="2" fill="rgba(201,148,10,.6)"/>
+      <circle cx="28" cy="5"  r="1" fill="rgba(201,148,10,.4)"/>
+      <circle cx="5"  cy="28" r="1" fill="rgba(201,148,10,.4)"/>
+      <circle cx="42" cy="5"  r=".8" fill="rgba(201,148,10,.3)"/>
+      <circle cx="5"  cy="42" r=".8" fill="rgba(201,148,10,.3)"/>
+      <!-- Vine lines -->
+      <path d="M14 5 Q20 12 14 18 Q8 24 14 30" stroke="rgba(201,148,10,.3)" stroke-width=".7" fill="none"/>
+      <path d="M5 14 Q12 20 18 14 Q24 8 30 14" stroke="rgba(201,148,10,.3)" stroke-width=".7" fill="none"/>
+    </svg>
+    <svg class="corner-svg corner-tr" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M5 5 Q5 55 5 105" stroke="rgba(201,148,10,.4)" stroke-width="1"/>
+      <path d="M5 5 Q55 5 105 5" stroke="rgba(201,148,10,.4)" stroke-width="1"/>
+      <path d="M5 5 Q30 30 55 5" stroke="rgba(201,148,10,.55)" stroke-width="1" fill="none"/>
+      <path d="M5 5 Q5 30 5 55" stroke="rgba(201,148,10,.4)" stroke-width="1" fill="none"/>
+      <path d="M8 8 C18 8 22 18 14 22 C8 25 8 18 14 16" stroke="rgba(201,148,10,.65)" stroke-width=".9" fill="none"/>
+      <path d="M8 8 C8 18 18 22 22 14 C25 8 18 8 16 14" stroke="rgba(201,148,10,.65)" stroke-width=".9" fill="none"/>
+      <circle cx="5"  cy="5"  r="2" fill="rgba(201,148,10,.6)"/>
+      <circle cx="28" cy="5"  r="1" fill="rgba(201,148,10,.4)"/>
+      <circle cx="5"  cy="28" r="1" fill="rgba(201,148,10,.4)"/>
+      <circle cx="42" cy="5"  r=".8" fill="rgba(201,148,10,.3)"/>
+      <circle cx="5"  cy="42" r=".8" fill="rgba(201,148,10,.3)"/>
+      <path d="M14 5 Q20 12 14 18 Q8 24 14 30" stroke="rgba(201,148,10,.3)" stroke-width=".7" fill="none"/>
+      <path d="M5 14 Q12 20 18 14 Q24 8 30 14" stroke="rgba(201,148,10,.3)" stroke-width=".7" fill="none"/>
+    </svg>
+
+    <!-- Castle silhouette SVG (atmospheric, behind content) -->
+    <div class="castle-wrap" aria-hidden="true">
+      <svg viewBox="0 0 430 220" width="100%" height="100%" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="castle-grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#ffffff" stop-opacity=".75"/>
+            <stop offset="60%"  stop-color="#e6f4fc" stop-opacity=".9"/>
+            <stop offset="100%" stop-color="#bce3f7" stop-opacity="1"/>
+          </linearGradient>
+        </defs>
+        <!-- ── FAR LEFT tiny tower ── -->
+        <rect x="18" y="162" width="14" height="58" fill="url(#castle-grad)"/>
+        <polygon points="18,162 25,144 32,162" fill="url(#castle-grad)"/>
+        <rect x="14" y="154" width="4" height="10" fill="url(#castle-grad)"/>
+        <rect x="28" y="154" width="4" height="10" fill="url(#castle-grad)"/>
+        <!-- ── LEFT main tower ── -->
+        <rect x="55" y="130" width="38" height="90" fill="url(#castle-grad)"/>
+        <polygon points="55,130 74,98 93,130" fill="url(#castle-grad)"/>
+        <!-- battlements -->
+        <rect x="50" y="120" width="7" height="12" fill="url(#castle-grad)"/>
+        <rect x="62" y="120" width="7" height="12" fill="url(#castle-grad)"/>
+        <rect x="74" y="120" width="7" height="12" fill="url(#castle-grad)"/>
+        <rect x="86" y="120" width="7" height="12" fill="url(#castle-grad)"/>
+        <!-- window -->
+        <rect x="67" y="148" width="14" height="20" rx="7" fill="rgba(245,224,138,.7)"/>
+        <!-- ── LEFT mid tower ── -->
+        <rect x="106" y="148" width="28" height="72" fill="url(#castle-grad)"/>
+        <polygon points="106,148 120,122 134,148" fill="url(#castle-grad)"/>
+        <rect x="102" y="140" width="6" height="10" fill="url(#castle-grad)"/>
+        <rect x="113" y="140" width="6" height="10" fill="url(#castle-grad)"/>
+        <rect x="124" y="140" width="6" height="10" fill="url(#castle-grad)"/>
+        <!-- ── CENTER MAIN TALL TOWER ── -->
+        <rect x="174" y="44" width="82" height="176" fill="url(#castle-grad)"/>
+        <polygon points="174,44 215,6 256,44" fill="url(#castle-grad)"/>
+        <!-- battlements top -->
+        <rect x="168" y="32" width="9" height="14" fill="url(#castle-grad)"/>
+        <rect x="183" y="32" width="9" height="14" fill="url(#castle-grad)"/>
+        <rect x="208" y="32" width="9" height="14" fill="url(#castle-grad)"/>
+        <rect x="228" y="32" width="9" height="14" fill="url(#castle-grad)"/>
+        <rect x="248" y="32" width="9" height="14" fill="url(#castle-grad)"/>
+        <!-- center windows -->
+        <rect x="198" y="70" width="34" height="48" rx="17" fill="rgba(245,224,138,.65)"/>
+        <rect x="206" y="132" width="18" height="26" rx="9" fill="rgba(245,224,138,.7)"/>
+        <!-- flag -->
+        <line x1="215" y1="6" x2="215" y2="0" stroke="url(#castle-grad)" stroke-width="1.5"/>
+        <polygon points="215,0 228,4 215,8" fill="rgba(201,148,10,.95)"/>
+        <!-- ── RIGHT mid tower ── -->
+        <rect x="296" y="148" width="28" height="72" fill="url(#castle-grad)"/>
+        <polygon points="296,148 310,122 324,148" fill="url(#castle-grad)"/>
+        <rect x="292" y="140" width="6" height="10" fill="url(#castle-grad)"/>
+        <rect x="303" y="140" width="6" height="10" fill="url(#castle-grad)"/>
+        <rect x="314" y="140" width="6" height="10" fill="url(#castle-grad)"/>
+        <!-- ── RIGHT main tower ── -->
+        <rect x="337" y="130" width="38" height="90" fill="url(#castle-grad)"/>
+        <polygon points="337,130 356,98 375,130" fill="url(#castle-grad)"/>
+        <rect x="332" y="120" width="7" height="12" fill="url(#castle-grad)"/>
+        <rect x="344" y="120" width="7" height="12" fill="url(#castle-grad)"/>
+        <rect x="356" y="120" width="7" height="12" fill="url(#castle-grad)"/>
+        <rect x="368" y="120" width="7" height="12" fill="url(#castle-grad)"/>
+        <rect x="349" y="148" width="14" height="20" rx="7" fill="rgba(245,224,138,.7)"/>
+        <!-- ── FAR RIGHT tiny tower ── -->
+        <rect x="398" y="162" width="14" height="58" fill="url(#castle-grad)"/>
+        <polygon points="398,162 405,144 412,162" fill="url(#castle-grad)"/>
+        <rect x="394" y="154" width="4" height="10" fill="url(#castle-grad)"/>
+        <rect x="408" y="154" width="4" height="10" fill="url(#castle-grad)"/>
+        <!-- ── CONNECTING WALLS ── -->
+        <rect x="93"  y="165" width="81"  height="55" fill="url(#castle-grad)"/>
+        <rect x="256" y="165" width="81"  height="55" fill="url(#castle-grad)"/>
+        <!-- Ground arch gate -->
+        <rect x="197" y="175" width="36" height="45" rx="18" fill="rgba(245,224,138,.55)"/>
+        <!-- Wall battlements -->
+        <rect x="93"  y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="107" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="121" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="135" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="149" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="163" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="256" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="270" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="284" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="298" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="312" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+        <rect x="326" y="158" width="7" height="9" fill="url(#castle-grad)"/>
+      </svg>
+    </div>
+
+    <!-- Magic wand arc trails -->
+    <svg class="magic-trail" viewBox="0 0 430 700" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 380 80 Q 280 200 180 320 Q 80 440 120 600" stroke="rgba(255,255,255,.25)" stroke-width="1.5" fill="none" stroke-dasharray="4 6"/>
+      <path d="M 50 100 Q 150 220 250 280 Q 350 340 380 480" stroke="rgba(201,148,10,.2)" stroke-width="1" fill="none" stroke-dasharray="3 8"/>
+      <!-- Sparkle dots along trails -->
+      <circle cx="310" cy="180" r="2" fill="rgba(255,255,255,.6)"/>
+      <circle cx="250" cy="260" r="1.5" fill="rgba(255,255,255,.5)"/>
+      <circle cx="190" cy="340" r="2.5" fill="rgba(255,255,255,.7)"/>
+      <circle cx="150" cy="430" r="1.5" fill="rgba(201,148,10,.6)"/>
+      <circle cx="130" cy="520" r="2" fill="rgba(255,255,255,.5)"/>
+      <circle cx="120" cy="190" r="1.5" fill="rgba(255,255,255,.55)"/>
+      <circle cx="160" cy="260" r="2" fill="rgba(201,148,10,.5)"/>
+      <circle cx="320" cy="350" r="1.5" fill="rgba(255,255,255,.6)"/>
+      <circle cx="360" cy="420" r="2" fill="rgba(201,148,10,.45)"/>
+    </svg>
+
+    <!-- Crown SVG — elegant, not cartoon -->
+    <div class="crown-wrap">
+      <svg class="crown-svg" viewBox="0 0 80 60" aria-label="Corona">
+        <!-- Crown body -->
+        <path d="M10 50 L10 32 L25 42 L40 8 L55 42 L70 32 L70 50 Z"
+              fill="none" stroke="var(--gold)" stroke-width="1.4"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Base band -->
+        <rect x="10" y="48" width="60" height="5" rx="2.5"
+              fill="none" stroke="var(--gold)" stroke-width="1.2"/>
+        <!-- Gems -->
+        <circle cx="40" cy="8"  r="3"   fill="var(--gold-bright)" stroke="var(--gold)" stroke-width=".8"/>
+        <circle cx="25" cy="42" r="2.2" fill="var(--gold-bright)" stroke="var(--gold)" stroke-width=".8"/>
+        <circle cx="55" cy="42" r="2.2" fill="var(--gold-bright)" stroke="var(--gold)" stroke-width=".8"/>
+        <circle cx="10" cy="32" r="1.8" fill="var(--gold-light)"  stroke="var(--gold)" stroke-width=".7"/>
+        <circle cx="70" cy="32" r="1.8" fill="var(--gold-light)"  stroke="var(--gold)" stroke-width=".7"/>
+        <!-- Inner glow lines -->
+        <path d="M20 50 L20 36" stroke="rgba(201,148,10,.25)" stroke-width=".6"/>
+        <path d="M30 50 L30 40" stroke="rgba(201,148,10,.25)" stroke-width=".6"/>
+        <path d="M50 50 L50 40" stroke="rgba(201,148,10,.25)" stroke-width=".6"/>
+        <path d="M60 50 L60 36" stroke="rgba(201,148,10,.25)" stroke-width=".6"/>
+      </svg>
+    </div>
+
+    <p class="eyebrow">Celebrando con la gracia de Dios</p>
+
+    <h1 class="hero-name">Belén</h1>
+    <p class="hero-subtitle">Mis 15 Años</p>
+
+    <div class="gold-rule">
+      <div class="rule-line"></div>
+      <span class="rule-ornament">✦</span>
+      <div class="rule-line"></div>
+    </div>
+
+    <p class="hero-quote">
+      Te espero para compartir la alegría de esta noche que será para mí mágica, inolvidable y única
+    </p>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider reveal">
+    <div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div>
+  </div>
+
+  <!-- ── PARENTS ── -->
+  <section class="section reveal">
+    <p class="section-label">Con la bendición de sus padres</p>
+    <h2 class="parents-names">Franklin Cabascango<br>&amp; Lizeth Lomas</h2>
+    <p class="parents-text">Te invitan a celebrar junto a ellos este momento tan especial en la vida de Belén.</p>
+  </section>
+
+  <div class="divider reveal">
+    <div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div>
+  </div>
+
+  <!-- ── COUNTDOWN ── -->
+  <section class="section reveal">
+    <p class="countdown-label">Falta</p>
+    <div class="countdown-grid" role="timer" aria-label="Cuenta regresiva">
+      <div class="time-unit">
+        <span class="time-num" id="cd-days">00</span>
+        <span class="time-lbl">días</span>
+      </div>
+      <div class="time-unit">
+        <span class="time-num" id="cd-hours">00</span>
+        <span class="time-lbl">hrs</span>
+      </div>
+      <div class="time-unit">
+        <span class="time-num" id="cd-min">00</span>
+        <span class="time-lbl">min</span>
+      </div>
+      <div class="time-unit">
+        <span class="time-num" id="cd-sec">00</span>
+        <span class="time-lbl">seg</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EVENT DETAILS ── -->
+  <section class="section reveal" style="padding-top:1rem;">
+    <div class="glass-card">
+      <div style="text-align:center;margin-bottom:1.8rem;">
+        <span class="date-month">Junio &nbsp;·&nbsp; 2026</span>
+        <span class="date-number">27</span>
+        <span class="date-day">sábado</span>
+      </div>
+      
+      <!-- Ceremonia -->
+      <div class="location-row" style="margin-bottom:1.8rem;">
+        <div class="location-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 21C12 21 5 13.5 5 8.5a7 7 0 1 1 14 0c0 5-7 12.5-7 12.5z"/>
+            <circle cx="12" cy="8.5" r="2.5"/>
+          </svg>
+        </div>
+        <div>
+          <span style="display:block; font-family:var(--font-sans); font-weight:600; font-size:.65rem; color:var(--gold); letter-spacing:.15em; text-transform:uppercase; margin-bottom:.3rem;">Ceremonia Religiosa</span>
+          <p class="location-name" style="font-size:1.15rem; margin-bottom:.1rem;">Iglesia de Puembo</p>
+          <span class="date-time" style="margin-top: 0; margin-bottom: .4rem; font-size:.75rem; display:inline-block;">6 : 00 pm</span>
+          <p class="location-address">Calle Apóstol Santiago &amp; Vía Antonio Ante, Puembo</p>
+          <a href="https://maps.google.com/?q=Iglesia+de+Puembo+Ecuador" class="btn-maps" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Ver en Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Recepción -->
+      <div class="location-row" style="padding-top:1.8rem; border-top:1px solid rgba(201,148,10,.18);">
+        <div class="location-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 21C12 21 5 13.5 5 8.5a7 7 0 1 1 14 0c0 5-7 12.5-7 12.5z"/>
+            <circle cx="12" cy="8.5" r="2.5"/>
+          </svg>
+        </div>
+        <div>
+          <span style="display:block; font-family:var(--font-sans); font-weight:600; font-size:.65rem; color:var(--gold); letter-spacing:.15em; text-transform:uppercase; margin-bottom:.3rem;">Recepción</span>
+          <p class="location-name" style="font-size:1.15rem; margin-bottom:.1rem;">Casa de mis Padres</p>
+          <p class="location-address">Pasaje San Patricio &amp; Av San José</p>
+          <a href="https://maps.app.goo.gl/38A6qMi5uSxJdZ4R6" class="btn-maps" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Ver en Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="divider reveal">
+    <div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer reveal">
+    <p class="footer-name">Te esperamos</p>
+    <p class="footer-date">27 · 06 · 2026</p>
+  </footer>
+
+</div><!-- /page -->
+
+<script type="module" src="/main.js"></script>
+</body>
+</html>
