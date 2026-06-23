@@ -160,3 +160,37 @@ import './style.css'
   const hero = document.querySelector('.hero');
   if(hero) setTimeout(()=>hero.classList.add('in'),60);
 })();
+
+
+// Audio & Welcome Screen Logic
+const welcomeScreen = document.getElementById('welcomeScreen');
+const btnOpen = document.getElementById('btnOpen');
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+
+if (btnOpen && welcomeScreen && bgMusic) {
+  btnOpen.addEventListener('click', () => {
+    // Start audio
+    bgMusic.play().catch(e => console.log('Audio autoplay blocked', e));
+    
+    // Hide welcome screen
+    welcomeScreen.style.opacity = '0';
+    setTimeout(() => {
+      welcomeScreen.style.display = 'none';
+      // Show music toggle
+      if (musicToggle) musicToggle.classList.add('visible');
+    }, 1000); // matches CSS transition
+  });
+}
+
+if (musicToggle && bgMusic) {
+  musicToggle.addEventListener('click', () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      musicToggle.classList.remove('paused');
+    } else {
+      bgMusic.pause();
+      musicToggle.classList.add('paused');
+    }
+  });
+}
